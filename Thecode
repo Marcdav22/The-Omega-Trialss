@@ -1,0 +1,665 @@
+var screen = 0;// Initial screen
+var pressed = false; // Button press
+var jump = false; // jumping
+var direction = 1; // force of gravity y-direction
+var velocity = 2;// speed of character
+var jumpPower = 11 // strength of character
+var fallingSpeed = 3;// velocity due to gravity
+var minHeight = 351; // height of ground
+var maxHeight = -10 // height of sky
+var jumpCounter = 0 // How many jumps player has done
+//rectangle 1
+var rect1x = 480
+var rect1y = 300
+var rect1w = 140
+var rect1h = 15
+var Lives = 2
+
+//rectangle 1 end
+
+// rectangle 2 start
+var rect2x = 670
+var rect2y = 240
+// rectangle 2 end
+
+// Rectangle 3 start
+var rect3x = 275
+var rect3y = 307
+var rect3w = 20
+var rect3h = 72
+// rectangle 3 end
+
+//rectangle 4 start
+var rect4x = 900
+var rect4y = 195
+var rect4w = 20
+var rect4h = 182
+
+// rectangle 4 end
+
+// reactangle 5 start
+var rect5x = 1075
+var rect5y = 0
+var rect5w = 20
+var rect5h = 350
+// rectangle  5 end
+
+// reactangle 6 start
+var rect6x = 1096;
+var rect6y = 330;
+var rect6w = 350;
+var rect6h = 20;
+var rect6b = rect6y +20;
+var wheight6 =  20;
+// rectangle  6 end
+
+//rectangle 7 start
+var rect7x = 1900
+var rect7y = 300
+var rect7w = 140
+var rect7h = 15
+
+//rectangle 7 end
+
+//rectangle 8 start
+var rect8x = 2100
+var rect8y = 250
+var rect8w = 140
+var rect8h = 15
+//rectangle 8 end
+// rectangle 9 start
+var rect9x = 2250
+var rect9y = 170
+var rect9w = 140
+var rect9h = 15
+// rectangle 9 end
+//rectangle 10 start
+var rect10x = 2290
+var rect10y = 195
+var rect10w = 20
+var rect10h = 182
+//rectangle 10 end
+// rectangle 11 start
+var rect11x = 2520
+var rect11y = 170
+var rect11w = 140
+var rect11h = 15
+// rectangle 9 end
+//rectangle 10 start
+var rect12x = 2550
+var rect12y = 195
+var rect12w = 20
+var rect12h = 182
+//rectangle 10 end
+var rect13x = 3125
+var rect13y = 300
+var rect13w = 70
+var rect13h = 15
+
+var rect14x = 3125
+var rect14y = 225
+var rect14w = 70
+var rect14h = 15
+
+var rect15x = 3125
+var rect15y = 150
+var rect15w = 70
+var rect15h = 15
+
+var rect16x = 3125
+var rect16y = 75
+var rect16w = 70
+var rect16h = 15
+
+var rect17x = 3250
+var rect17y = 100
+var rect17w = 20
+var rect17h = 350
+
+let movingUp = false;
+let movingDown = false;
+
+var totaltime;
+// movement
+let movingRight = false;
+let movingLeft = false;
+let movingRight2 = false;
+let movingLeft2 = false;
+// movement
+
+// character position and speed
+let xpos = 100;
+let ypos = 300;
+let speed = 4;
+// End Character position and speed
+
+function preload(){
+  img1 =loadImage("images/Titlescreen.png")
+  img2 =loadImage("images/tutorials.png")
+  img3 = loadImage("images/Boss_stage1.png")
+  img4 = loadImage("images/Nivelacuatico.png")
+  character = loadImage("images/idleframe1.png")
+  shark = loadImage ("images/Shark.png")
+  img5 = loadImage ("images/secondbossstage.png")
+  boss2 = loadImage ("images/Boss.png")
+  Gameover= loadImage("images/Gameover_screen.png")
+  Win = loadImage("images/WinningScreen.png")
+  
+  
+  
+}
+// Creating canvas starting screen and button
+function setup() {
+  let canvas = createCanvas(400, 400);
+    button = createButton('Begin')
+  .mousePressed(()  => pressed = true);
+}
+// End of Creating canvas starting screen and button
+
+// Drawing Different scenes
+function draw() {
+  if (screen == 0){
+    TitleScreen();
+  } else if (screen == 1){
+    AnimationScreen();
+  } else if (screen == 2){
+    Boss1Screen();
+  }
+  else if (screen == 3){
+    waterscreen();
+  }
+  else if (screen == 4){
+    Winscreen();
+  }
+  
+  else if (screen == 7){
+    Losecreen()
+  }
+    
+  
+  
+
+
+}
+// End of Drawing Different scenes
+
+// Title screen + button press command
+function TitleScreen(){
+  background(img1);
+    textFont('Georgia');
+  fill(255);
+  stroke(0);
+  strokeWeight(5);
+  textSize(15);
+  text('Use UPARROW, LEFT ARROW, Right Arrow to move in ', textx, 20);
+  text('the lab. W,A,S,D for the water section', textx, 50);
+ 
+ 
+    button.position(180, 180);
+    if (pressed) {
+      screen++;
+      resizeCanvas(4000, 400);
+}
+    
+}
+// End of Title screen + button press command
+
+// Second screen/ if we change this screen
+function AnimationScreen(){
+	background(img2);
+    button.remove();
+    let c = color('grey');
+    fill(c);
+    rect(rect2x, rect2y, 140, 15);
+    rect(rect3x,rect3y, rect3w, rect3h); 
+    rect(rect1x, rect1y, rect1w, rect1h);
+    rect(rect4x, rect4y, rect4w, rect4h);
+    rect(rect5x, rect5y, rect5w, rect5h);
+    rect(rect6x, rect6y, rect6w, rect6h);
+    rect(rect7x, rect7y, rect7w, rect7h);
+    rect(rect8x, rect8y, rect8w, rect8h);
+    rect(rect9x, rect9y, rect9w, rect9h);
+    rect(rect10x, rect10y, rect10w, rect10h);
+    rect(rect11x, rect11y, rect11w, rect11h);
+    rect(rect12x, rect12y, rect12w, rect12h);
+    rect(rect13x, rect13y, rect13w, rect13h);
+    rect(rect14x, rect14y, rect14w, rect14h);
+    rect(rect15x, rect15y, rect15w, rect15h);
+    rect(rect16x, rect16y, rect16w, rect16h);
+    rect(rect17x, rect17y, rect17w, rect17h);
+    fill(0, 0, 255);
+    gravity();
+    let b = color('black');
+    fill(b);
+
+    image(character, xpos, ypos)
+    
+//collisions 
+  if (xpos <= rect1x+rect1w/2 +40 && xpos >= rect1x-rect1w/2 + 30 && ypos+ 17 >= rect1y-rect1h/2 && ypos +17 <= rect1y+rect1h/2 && jump == false){
+     ypos = ypos;
+    velocity = 0;
+    jumpCounter = 0;
+  }
+  if (xpos <= rect2x+rect1w/2 +40  && xpos >= rect2x-rect1w/2 +30 && ypos+ 17 >= rect2y-rect1h/2 && ypos +17 <= rect2y+rect1h/2 && jump == false){
+     ypos = ypos;
+    velocity = 0;
+    jumpCounter = 0;
+  }
+  
+  if (xpos <= rect3x+rect3w/2 && xpos >= rect3x-rect3w/2 -30 && ypos -10 >= rect3y-rect3h/2 && ypos -10 <= rect3y+rect3h/2 && jump == false){
+    xpos = rect3x-60 ;
+    ypos = ypos;
+    velocity = 0;
+    jumpCounter = 0;
+  }
+  if (xpos <= rect4x+rect4w/2 && xpos >= rect4x-rect4w/2 -30 && ypos -90  >= rect4y-rect4h/2 && ypos -90  <= rect4y+rect4h/2 && jump == false){
+    xpos = rect4x-60 ;
+    ypos = ypos;
+    velocity = 0;
+    jumpCounter = 0;
+  }
+    if (xpos <= rect5x+rect5w/2 && xpos >= rect5x-rect5w/2 -30 && ypos -160  >= rect5y-rect5h/2 && ypos -160   <= rect5y+rect5h/2  && jump == false){
+    xpos = rect5x-60 ;
+    ypos = ypos;
+    velocity = 0;
+    jumpCounter = 0;
+  }
+  
+      if (xpos <= rect6x+rect6w/2 + 133 && xpos >= rect6x-rect6w/2 -30 && ypos+10  >= rect6b-rect6h/2 && ypos +10    <= rect6b+rect6h/2  ){
+    velocity = fallingSpeed
+    
+  }
+  if (xpos <= rect7x+rect7w/2 +40  && xpos >= rect7x-rect7w/2 +30 && ypos+ 17 >= rect7y-rect7h/2 && ypos +17 <= rect7y+rect7h/2 && jump == false){
+     ypos = ypos;
+    velocity = 0;
+    jumpCounter = 0;
+  }
+   if (xpos <= rect8x+rect8w/2 +40  && xpos >= rect8x-rect8w/2 +30 && ypos+ 17 >= rect8y-rect8h/2 && ypos +17 <= rect8y+rect8h/2 && jump == false){
+     ypos = ypos;
+    velocity = 0;
+    jumpCounter = 0;
+  }
+
+  if (xpos <= rect9x+rect9w/2 +40  && xpos >= rect9x-rect9w/2 +30 && ypos+ 17 >= rect9y-rect9h/2 && ypos +17 <= rect9y+rect9h/2 && jump == false){
+    ypos = ypos;
+    velocity = 0;
+    jumpCounter = 0;
+  }
+  if (xpos <= rect10x+rect10w/2 && xpos >= rect10x-rect10w/2 -30 && ypos -100  >= rect10y-rect10h/2 && ypos -100   <= rect10y+rect10h/2  && jump == false){
+    xpos = rect10x-60 ;
+    ypos = ypos;
+    velocity = 0;
+    jumpCounter = 0;
+  }
+  if (xpos <= rect11x+rect11w/2 +40  && xpos >= rect11x-rect11w/2 +30 && ypos+ 17 >= rect11y-rect11h/2 && ypos +17 <= rect11y+rect11h/2 && jump == false){
+    ypos = ypos;
+    velocity = 0;
+    jumpCounter = 0;
+  }
+  if (xpos <= rect12x+rect12w/2 && xpos >= rect12x-rect12w/2 -30 && ypos -100  >= rect12y-rect12h/2 && ypos -100   <= rect12y+rect12h/2  && jump == false){
+    xpos = rect12x-60 ;
+    ypos = ypos;
+    velocity = 0;
+    jumpCounter = 0;
+  }
+  if (xpos <= rect13x+rect13w/2 +8 && xpos >= rect13x-rect13w/2 + 4 && ypos+ 17 >= rect13y-rect13h/2 && ypos +17 <= rect13y+rect13h/2 && jump == false){
+     ypos = ypos;
+    velocity = 0;
+    jumpCounter = 0;
+  }
+  if (xpos <= rect14x+rect14w/2 +8 && xpos >= rect14x-rect14w/2 + 4 && ypos+ 17 >= rect14y-rect14h/2 && ypos +17 <= rect14y+rect14h/2 && jump == false){
+     ypos = ypos;
+    velocity = 0;
+    jumpCounter = 0;
+  }
+  if (xpos <= rect15x+rect15w/2 +8 && xpos >= rect15x-rect15w/2 + 4 && ypos+ 17 >= rect15y-rect15h/2 && ypos +17 <= rect15y+rect15h/2 && jump == false){
+     ypos = ypos;
+    velocity = 0;
+    jumpCounter = 0;
+  }
+  if (xpos <= rect16x+rect16w/2 +8 && xpos >= rect16x-rect16w/2 + 4 && ypos+ 17 >= rect16y-rect16h/2 && ypos +17 <= rect16y+rect16h/2 && jump == false){
+     ypos = ypos;
+    velocity = 0;
+    jumpCounter = 0;
+  }
+  if (xpos <= rect17x+rect17w/2 && xpos >= rect17x-rect17w/2 -30 && ypos -150  >= rect17y-rect17h/2 && ypos -150   <= rect17y+rect17h/2  && jump == false){
+    xpos = rect17x-60 ;
+    ypos = ypos;
+    velocity = 0;
+    jumpCounter = 0;
+  }
+  if (xpos >= 3900){
+    screen++;
+    resizeCanvas(550, 400);
+    speed = 3;
+    
+  }
+  
+ // update moving character
+  if (movingRight) {
+    xpos += speed;
+  }
+  if (movingLeft) {
+    xpos -= speed;
+  }
+}
+// end of moving character
+
+// Keys
+
+ 
+//gravity and jumping mechanic
+
+////////////////////////////// Boss #1
+var rectb1x = 400
+var rectb1y = 225
+var rectb2x = 20
+var rectb2y = 225
+var rectb3x = 212
+var rectb3y = 290
+var rectb4x = 400
+var rectb4y = 100
+var rectb5x = 20
+var rectb5y = 100
+var rectb6x = 212
+var rectb6y = 170
+var boss1x = 400;
+var boss1y = 42;
+var boss2x = 100;
+var boss2y = 320;
+var bossL = 4
+
+function Boss1Screen(){
+  background(img3);
+  
+  let c = color('grey');
+  fill(c);
+  rect(rectb1x, rectb1y, 140, 15);
+  gravity();
+  image(character, xpos-3800, ypos);
+  
+  rect(rectb2x, rectb2y, 140, 15);
+  rect(rectb3x, rectb3y, 140, 15);
+  rect(rectb4x, rectb4y, 140, 15);
+  rect(rectb5x, rectb5y, 140, 15);
+  rect(rectb6x, rectb6y, 140, 15);
+  totalTime= millis();
+  timeLimit = 150;
+  textFont('Georgia');
+  fill(255);
+  stroke(0);
+  strokeWeight(5);
+  textSize(15);
+  text('Time:', 300, 25);
+  totalTime = int(totalTime/1000)
+  text(timeLimit-totalTime, 350, 25);
+  if(timeLimit-totalTime == 0){
+    screen = 7;
+  }
+  
+  
+  if (xpos-3800 <= rectb1x+rect1w/2 +40 && xpos-3800 >= rectb1x-rect1w/2 + 30 && ypos+ 17 >= rectb1y-rect1h/2 && ypos +17 <= rectb1y+rect1h/2 && jump == false){
+    ypos = ypos;
+    velocity = 0;
+    jumpCounter = 0;
+  }
+  if (xpos-3800 <= rectb2x+rect1w/2 +40 && xpos-3800 >= rectb2x-rect1w/2 + 30 && ypos+ 17 >= rectb2y-rect1h/2 && ypos +17 <= rectb2y+rect1h/2 && jump == false){
+    ypos = ypos;
+    velocity = 0;
+    jumpCounter = 0;
+  }
+  if (xpos-3800 <= rectb3x+rect1w/2 +40 && xpos-3800 >= rectb3x-rect1w/2 + 30 && ypos+ 17 >= rectb3y-rect1h/2 && ypos +17 <= rectb3y+rect1h/2 && jump == false){
+    ypos = ypos;
+    velocity = 0;
+    jumpCounter = 0;
+  }
+  if (xpos-3800 <= rectb4x+rect1w/2 +40 && xpos-3800 >= rectb4x-rect1w/2 + 30 && ypos+ 17 >= rectb4y-rect1h/2 && ypos +17 <= rectb4y+rect1h/2 && jump == false){
+    ypos = ypos;
+    velocity = 0;
+    jumpCounter = 0;
+  }
+  if (xpos-3800 <= rectb5x+rect1w/2 +40 && xpos-3800 >= rectb5x-rect1w/2 + 30 && ypos+ 17 >= rectb5y-rect1h/2 && ypos +17 <= rectb5y+rect1h/2 && jump == false){
+    ypos = ypos;
+    velocity = 0;
+    jumpCounter = 0;
+  }
+  if (xpos-3800 <= rectb6x+rect1w/2 +40 && xpos-3800 >= rectb6x-rect1w/2 + 30 && ypos+ 17 >= rectb6y-rect1h/2 && ypos +17 <= rectb6y+rect1h/2 && jump == false){
+    ypos = ypos;
+    velocity = 0;
+    jumpCounter = 0;
+  }
+  if (movingRight) {
+    xpos += speed;
+  }
+  if (movingLeft) {
+    xpos -= speed;
+  }
+  image(boss2, boss1x, boss1y, robw, robh)
+  if(xpos-3800 <= boss1x+robw/2  && xpos-3800 >= boss1x-robw/2  && ypos >= boss1y-robh/2 && ypos <= boss1y+robh/2){
+    boss1x = 100;
+    boss1y = 320;
+    bossL -= 1;
+}
+  if(xpos-3800 <= boss1x+robw/2  && xpos-3800 >= boss1x-robw/2  && ypos >= boss1y-robh/2 && ypos <= boss1y+robh/2){
+    boss1x = 100;
+    boss1y = 42;
+    bossL -= 1;
+}
+  if(xpos-3800 <= boss1x+robw/2  && xpos-3800 >= boss1x-robw/2  && ypos >= boss1y-robh/2 && ypos <= boss1y+robh/2){
+    boss1x = 400;
+    boss1y = 320; 
+    bossL -= 1;
+}
+  if (bossL == 0){
+    screen += 1;
+    resizeCanvas(1500, 400);
+  }
+}
+
+//////////////////////////////////////New Scene
+
+var robx = 200;
+var roby = 200;
+var rob2x = 380;
+var rob2y = 170;
+var rob3x = 380;
+var rob3y = 300;
+var rob4x = 1400;
+var rob4y = 150;
+var rob5x = 800;
+var rob5y = 250;
+var rob6x = 800;
+var rob6y = 100;
+var rob11x = 1500;
+var rob11y = 70;
+var robw = 120;
+var robh =60;
+var robS = 1;
+var robD = 1;
+var textxL = 75;
+var textx = 25
+
+function waterscreen(){
+
+  background(img4)
+  image(character, xpos, ypos)
+  textFont('Georgia');
+  fill(255);
+  stroke(0);
+  strokeWeight(5);
+  textSize(15);
+  text('Lives:', textx, 25);
+  text(Lives, textxL, 25);
+  if (movingRight2) {
+    xpos += speed;
+    
+    
+  }
+  if (movingLeft2) {
+    xpos -= speed;
+    
+  }
+  if (movingUp) {
+    ypos -= speed;
+  }
+  if (movingDown) {
+    ypos += speed;
+  }
+
+//robots
+  image(shark, robx, roby, robw, robh)
+  if(xpos <= robx+robw/2 -35 && xpos >= robx-robw/2 +50  && ypos >= roby-robh/2 && ypos <= roby+robh/2){
+    Lives = Lives-1
+    xpos =100;
+    ypos =300
+    
+    
+  }
+  image(shark, rob2x, rob2y, robw, robh)
+  if(xpos>= rob2x-robw/2 -35 && xpos <= rob2x+robw/2+50 && ypos>= rob2y-robh/2 && ypos <= rob2y+robh/2){
+    Lives = Lives-1
+    xpos =100;
+    ypos =300
+    
+  }
+  image(shark, rob3x, rob3y, robw, robh)
+  if(xpos>= rob3x-robw/2 -35 && xpos <= rob3x+robw/2 +50 && ypos>= rob3y-robh/2 && ypos <= rob3y+robh/2){
+    Lives = Lives-1
+    image(character, xpos, ypos-200)
+    xpos =100;
+    ypos =300
+    
+  }
+  image(shark, rob4x, rob4y, robw, robh)
+  if(xpos>= rob4x-robw/2 -35 && xpos <= rob4x+robw/2 +50 && ypos>= rob4y-robh/2 && ypos <= rob4y+robh/2){
+    Lives = Lives-1
+    xpos =100;
+    ypos =300
+    
+  }
+  image(shark, rob5x, rob5y, robw, robh)
+  if(xpos>= rob5x-robw/2-35 && xpos <= rob5x+robw/2 +50&& ypos>= rob5y-robh/2 && ypos <= rob5y+robh/2){
+    Lives = Lives-1
+    xpos =100;
+    ypos =300
+    
+  }
+  image(shark, rob6x, rob6y, robw, robh)
+  if(xpos>= rob6x-robw/2-35&& xpos <= rob6x+robw/2 +50 && ypos>= rob6y-robh/2 && ypos <= rob6y+robh/2){
+    Lives = Lives-1
+    xpos =100;
+    ypos =300
+    
+  }
+  image(shark, rob11x, rob11y, robw, robh)
+  if(xpos>= rob11x-robw/2-35 && xpos <= rob11x+robw/2+50 && ypos>= rob11y-robh/2+205 && ypos <= rob11y+robh/2){
+    Lives = Lives-1
+    xpos =100;
+    ypos =300
+    
+    
+  }
+  if (Lives <= 0){
+    screen = 7;
+    resizeCanvas(400, 400);
+  }
+  robx = robx - (robS*robD)
+  rob2x = rob2x - (robS*robD)
+  rob3x = rob3x - (robS*robD)
+  rob4x = rob4x - (robS*robD)
+  rob5x = rob5x - (robS*robD)
+  rob6x = rob6x - (robS*robD)
+  rob11x = rob11x - (robS*robD)
+  if (xpos >=  1400){
+    screen ++;
+    resizeCanvas(400, 400);
+  }
+
+
+}
+
+function Losecreen(){
+  background(Gameover)
+
+}
+
+function Winscreen(){
+  background(Win)
+}
+ 
+function gravity(){
+  if (ypos >= minHeight && jump == false ){
+    ypos = ypos;
+    jumpCounter = 0;
+  }
+  else{
+      ypos = ypos + (direction*velocity);// makes gravity happen
+  }
+  if (jump == true){
+    if (ypos <= maxHeight || jumpCounter >= jumpPower ){
+      if (ypos >= minHeight){
+        ypos = minHeight
+      }
+      else{velocity = fallingSpeed 
+          }
+     
+    }
+      else{
+    velocity = -jumpPower
+    jumpCounter = jumpCounter+1
+      }
+  }
+  else{
+    velocity = fallingSpeed
+  }
+}
+function keyPressed() {
+  if (keyCode == UP_ARROW) {
+    jump = true;
+  }
+  if (keyCode === LEFT_ARROW) {
+    movingLeft = true;
+  }
+  if (keyCode === RIGHT_ARROW) {
+    movingRight = true;
+  }
+    if (key == 'a') {
+    movingLeft2 = true;
+  }
+  if (key == 'd') {
+    movingRight2 = true;
+  }
+  if (key == 's') {
+    movingDown = true;
+  }
+   if (key == 'w') {
+    movingUp = true;
+  }
+}
+
+
+//Key release
+function keyReleased() {
+  if (keyCode == UP_ARROW) {
+    jump = false;
+  }
+  if (keyCode === LEFT_ARROW) {
+    movingLeft = false;
+  }
+  if (keyCode === RIGHT_ARROW) {
+    movingRight = false;
+  }
+    if (key == "a") {
+    movingLeft2 = false;
+  }
+  if (key == "d") {
+    movingRight2 = false;
+  }
+  
+  if (key == "s") {
+    movingDown = false;
+  }
+  if (key == "w") {
+    movingUp = false;
+  }
+}
